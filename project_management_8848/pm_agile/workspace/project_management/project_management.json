@@ -1,0 +1,140 @@
+{
+ "charts": [
+  {
+   "chart_name": "Tasks by Status",
+   "label": "Tasks by Status"
+  },
+  {
+   "chart_name": "Issues by Status",
+   "label": "Issues by Status"
+  }
+ ],
+ "content": "[{\"id\": \"pm-h-overview\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Overview</b></span>\", \"col\": 12}}, {\"id\": \"pm-nc-0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Sprints\", \"col\": 3}}, {\"id\": \"pm-nc-1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Open Tasks\", \"col\": 3}}, {\"id\": \"pm-nc-2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Overdue Tasks\", \"col\": 3}}, {\"id\": \"pm-nc-3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Open Issues\", \"col\": 3}}, {\"id\": \"pm-ch-0\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Tasks by Status\", \"col\": 6}}, {\"id\": \"pm-ch-1\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Issues by Status\", \"col\": 6}}, {\"id\": \"pm-h-quick\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Quick Access</b></span>\", \"col\": 12}}, {\"id\": \"pm-sc-0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Project Dashboard\", \"col\": 3}}, {\"id\": \"pm-sc-1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projects\", \"col\": 3}}, {\"id\": \"pm-sc-2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sprints\", \"col\": 3}}, {\"id\": \"pm-sc-3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Tasks\", \"col\": 3}}, {\"id\": \"pm-sc-4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Issues\", \"col\": 3}}, {\"id\": \"pm-sc-5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"New Sprint\", \"col\": 3}}, {\"id\": \"pm-card-masters\", \"type\": \"card\", \"data\": {\"card_name\": \"Masters\", \"col\": 4}}]",
+ "creation": "2026-10-17 14:17:51.961846",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "project",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Project Management",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project",
+   "link_count": 0,
+   "link_to": "Project",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sprint",
+   "link_count": 0,
+   "link_to": "Sprint",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Task",
+   "link_count": 0,
+   "link_to": "Task",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Issue",
+   "link_count": 0,
+   "link_to": "Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-17 14:17:51.575478",
+ "modified_by": "Administrator",
+ "module": "PM Agile",
+ "name": "Project Management",
+ "number_cards": [
+  {
+   "label": "Active Sprints",
+   "number_card_name": "Active Sprints"
+  },
+  {
+   "label": "Open Tasks",
+   "number_card_name": "Open Tasks"
+  },
+  {
+   "label": "Overdue Tasks",
+   "number_card_name": "Overdue Tasks"
+  },
+  {
+   "label": "Open Issues",
+   "number_card_name": "Open Issues"
+  }
+ ],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Project Dashboard",
+   "link_to": "pm-projects",
+   "type": "Page"
+  },
+  {
+   "doc_view": "List",
+   "label": "Projects",
+   "link_to": "Project",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Sprints",
+   "link_to": "Sprint",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Tasks",
+   "link_to": "Task",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Issues",
+   "link_to": "Issue",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Sprint",
+   "link_to": "Sprint",
+   "type": "DocType"
+  }
+ ],
+ "title": "Project Management"
+}

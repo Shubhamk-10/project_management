@@ -1,0 +1,154 @@
+/* Project Dashboard (pm-projects). Frappe CSS variables only, so light and dark themes both work. */
+
+.pm-dashboard {
+	padding: var(--padding-md, 15px) 0;
+}
+
+.pm-empty {
+	padding: 60px 20px;
+	text-align: center;
+	color: var(--text-muted);
+	background: var(--card-bg);
+	border: 1px dashed var(--border-color);
+	border-radius: var(--border-radius-md);
+}
+
+.pm-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 24px;
+	padding: var(--padding-md, 15px);
+	margin-bottom: var(--margin-lg, 20px);
+	background: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+}
+
+.pm-header-title {
+	font-size: var(--text-xl);
+	font-weight: 600;
+	color: var(--heading-color);
+}
+
+.pm-progress {
+	flex: 1 1 160px;
+	max-width: 260px;
+}
+
+.pm-progress-bar {
+	height: 6px;
+	margin-top: 4px;
+	background: var(--control-bg);
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.pm-progress-bar > span {
+	display: block;
+	height: 100%;
+	background: var(--primary);
+}
+
+.pm-section {
+	margin-bottom: var(--margin-xl, 30px);
+}
+
+.pm-section-title {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	margin-bottom: var(--margin-sm, 10px);
+	font-size: var(--text-lg);
+	font-weight: 600;
+	color: var(--heading-color);
+}
+
+.pm-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 12px;
+}
+
+.pm-grid.pm-stats {
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.pm-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 12px 14px;
+	background: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	box-shadow: var(--shadow-sm);
+}
+
+.pm-card-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+}
+
+.pm-card-title {
+	font-weight: 600;
+	color: var(--heading-color);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.pm-muted {
+	font-size: var(--text-sm);
+	color: var(--text-muted);
+}
+
+.pm-goal {
+	font-size: var(--text-sm);
+	color: var(--text-color);
+	white-space: pre-line;
+}
+
+.pm-counts {
+	display: flex;
+	gap: 16px;
+}
+
+.pm-card-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: auto;
+	padding-top: 6px;
+}
+
+.pm-backlog {
+	border-style: dashed;
+}
+
+.pm-stat {
+	cursor: pointer;
+}
+
+.pm-stat:hover,
+.pm-link:hover {
+	border-color: var(--primary);
+}
+
+.pm-stat-value {
+	font-size: var(--text-2xl);
+	font-weight: 600;
+	color: var(--heading-color);
+}
+
+.pm-stat.pm-overdue .pm-stat-value {
+	color: var(--red-500);
+}
+
+.pm-link {
+	color: var(--text-color);
+	cursor: pointer;
+	border-bottom: 1px dotted var(--border-color);
+}
