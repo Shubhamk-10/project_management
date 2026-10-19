@@ -5,6 +5,16 @@
 
 frappe.ui.form.on("Sprint", {
 	/**
+	 * Offer only Open projects in the Project field; the server enforces the same rule.
+	 *
+	 * @param {object} frm - The Sprint form.
+	 * @returns {void}
+	 */
+	setup(frm) {
+		frm.set_query("project", () => ({ filters: { status: "Open" } }));
+	},
+
+	/**
 	 * Add the Create > Task / Issue buttons once the sprint is saved and still open.
 	 *
 	 * @param {object} frm - The Sprint form.

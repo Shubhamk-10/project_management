@@ -6,7 +6,7 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from project_management_8848.pm_agile.page.pm_projects.pm_projects import get_dashboard_data
+from project_management_8848.pm_agile.project_dashboard import get_dashboard_data
 from project_management_8848.tests.utils import make_project, make_sprint, make_work_item
 
 

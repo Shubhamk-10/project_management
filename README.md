@@ -19,22 +19,21 @@ custom fields and hooks, so standard ERPNext screens, reports and permissions ke
 | DocType | Owned by this app? | Purpose |
 | ------- | ------------------ | ------- |
 | Sprint | Yes | A time-boxed iteration of a Project (Planned → Active → Completed) with a goal and date range. |
-| Project | No (ERPNext, unchanged) | The project a sprint and its work items belong to. |
-| Task | No (ERPNext, customized) | Gains a Sprint link and story points; dates fill from the sprint. |
-| Issue | No (ERPNext, customized) | Gains a Sprint link, story points and planned start/end dates. |
+| Project | No (ERPNext, customized) | The project a sprint and its work items belong to; its sprints show under Connections. |
+| Task | No (ERPNext, customized) | Gains a Sprint link; dates fill from the sprint. Sprint shows under Connections. |
+| Issue | No (ERPNext, customized) | Gains a Sprint link and planned start/end dates. Sprint shows under Connections. |
 
 ### Custom fields added to ERPNext
 
 | DocType | Field | Type | Placed after |
 | ------- | ----- | ---- | ------------ |
 | Task | Sprint | Link to Sprint | Project |
-| Task | Story Points | Integer | Sprint |
 | Issue | Sprint | Link to Sprint | Project |
-| Issue | Story Points | Integer | Sprint |
-| Issue | Planned Start Date | Date | Story Points |
+| Issue | Planned Start Date | Date | Sprint |
 | Issue | Planned End Date | Date | Planned Start Date |
 
-The fields are created on install and re-applied on every migrate, and removed when the app is uninstalled.
+The fields ship as fixtures (`fixtures/task.json`, `fixtures/issue.json`): Frappe creates them on install
+and re-applies them on every `bench migrate`, and removes them when the app is uninstalled.
 
 ## Features
 
@@ -54,6 +53,8 @@ The fields are created on install and re-applied on every migrate, and removed w
   dates on Issue). Dates already entered are kept. Removing the sprint returns the item to the backlog.
 - **Guard rails:** a project has at most one Active sprint. A sprint must end on or after its start.
   An item cannot be placed in a sprint of a different project or added to a Completed sprint.
+  A Task can be set to Working only while its sprint is Active, and a Task's expected dates
+  or an Issue's planned dates must fall within the sprint's start and end dates.
   These rules apply to form saves, Quick Entry, Data Import and the REST API alike.
 
 ## Integrations

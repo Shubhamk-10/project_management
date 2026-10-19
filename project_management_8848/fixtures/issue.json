@@ -1,0 +1,41 @@
+[
+ {
+  "doctype": "Custom Field",
+  "dt": "Issue",
+  "fieldname": "sprint",
+  "fieldtype": "Link",
+  "in_standard_filter": 1,
+  "insert_after": "project",
+  "is_system_generated": 1,
+  "label": "Sprint",
+  "modified": "2026-10-17 14:00:15.306097",
+  "module": "PM Agile",
+  "name": "Issue-sprint",
+  "options": "Sprint",
+  "search_index": 1
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Issue",
+  "fieldname": "planned_start_date",
+  "fieldtype": "Date",
+  "insert_after": "sprint",
+  "is_system_generated": 1,
+  "label": "Planned Start Date",
+  "modified": "2026-10-19 12:26:33.259018",
+  "module": "PM Agile",
+  "name": "Issue-planned_start_date"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Issue",
+  "fieldname": "planned_end_date",
+  "fieldtype": "Date",
+  "insert_after": "planned_start_date",
+  "is_system_generated": 1,
+  "label": "Planned End Date",
+  "modified": "2026-10-17 14:00:15.624084",
+  "module": "PM Agile",
+  "name": "Issue-planned_end_date"
+ }
+]

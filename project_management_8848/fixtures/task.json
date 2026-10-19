@@ -1,0 +1,17 @@
+[
+ {
+  "doctype": "Custom Field",
+  "dt": "Task",
+  "fieldname": "sprint",
+  "fieldtype": "Link",
+  "in_standard_filter": 1,
+  "insert_after": "project",
+  "is_system_generated": 1,
+  "label": "Sprint",
+  "modified": "2026-10-17 14:00:15.062879",
+  "module": "PM Agile",
+  "name": "Task-sprint",
+  "options": "Sprint",
+  "search_index": 1
+ }
+]

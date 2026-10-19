@@ -51,7 +51,34 @@ pm.map_from_sprint = function (doctype, sprint) {
 };
 
 /**
- * Open a new Task or Issue pre-filled from a sprint. Completed sprints are refused.
+ * Check that a project is Open before adding sprints or items to it; shows a message when it is not.
+ * The server enforces the same rule (pm_agile/doctype/sprint/sprint_utils.py).
+ *
+ * @param {string} project - Project name.
+ * @param {string} items_label - Translated plural of what is being added, e.g. __("Sprints").
+ * @returns {Promise<boolean>} true when the project is Open.
+ */
+pm.ensure_project_open = function (project, items_label) {
+	return frappe.db.get_value("Project", project, "status").then((r) => {
+		const status = r.message && r.message.status;
+		if (!status || status === "Open") return true;
+
+		frappe.msgprint({
+			title: __("Project Not Open"),
+			message: __("Project {0} is {1}. New {2} can only be added to an Open project.", [
+				frappe.utils.escape_html(project).bold(),
+				__(status).bold(),
+				items_label,
+			]),
+			indicator: "orange",
+		});
+		return false;
+	});
+};
+
+/**
+ * Open a new Task or Issue pre-filled from a sprint. Completed sprints and sprints of a
+ * project that is not Open are refused.
  *
  * @param {string} doctype - "Task" or "Issue".
  * @param {string} sprint_name - Sprint name.
@@ -77,13 +104,16 @@ pm.new_from_sprint = function (doctype, sprint_name) {
 			});
 			return;
 		}
-		return frappe.new_doc(doctype, pm.map_from_sprint(doctype, sprint));
+		return pm.ensure_project_open(sprint.project, __("{0} items", [__(doctype)])).then((open) => {
+			if (open) return frappe.new_doc(doctype, pm.map_from_sprint(doctype, sprint));
+		});
 	});
 };
 
 /**
  * Ask for an optional open sprint of the project, then open a new Task or Issue.
- * Without a sprint the item goes to the project backlog.
+ * Without a sprint the item goes to the project backlog. A project that is not Open
+ * offers no sprint.
  *
  * @param {string} doctype - "Task" or "Issue".
  * @param {string} project - Project name; required.
@@ -95,6 +125,20 @@ pm.new_for_project = function (doctype, project) {
 		return;
 	}
 
+	frappe.db.get_value("Project", project, "status").then((r) => {
+		pm.ask_sprint_and_create(doctype, project, r.message && r.message.status === "Open");
+	});
+};
+
+/**
+ * Show the New Task / Issue dialog for a project.
+ *
+ * @param {string} doctype - "Task" or "Issue".
+ * @param {string} project - Project name.
+ * @param {boolean} project_open - Whether sprints of the project can take new items.
+ * @returns {void}
+ */
+pm.ask_sprint_and_create = function (doctype, project, project_open) {
 	const dialog = new frappe.ui.Dialog({
 		title: __("New {0}", [__(doctype)]),
 		fields: [
@@ -111,7 +155,10 @@ pm.new_for_project = function (doctype, project) {
 				fieldtype: "Link",
 				label: __("Sprint"),
 				options: "Sprint",
-				description: __("Leave empty to add the item to the project backlog."),
+				description: project_open
+					? __("Leave empty to add the item to the project backlog.")
+					: __("The project is not Open, so the item goes to its backlog."),
+				read_only: project_open ? 0 : 1,
 				get_query: () => pm.open_sprint_query(project),
 			},
 		],
@@ -129,13 +176,15 @@ pm.new_for_project = function (doctype, project) {
 };
 
 /**
- * Open a new Sprint for the project.
+ * Open a new Sprint for the project when it is Open.
  *
  * @param {string} project - Project name.
  * @returns {Promise<void>}
  */
 pm.new_sprint = function (project) {
-	return frappe.new_doc("Sprint", { project });
+	return pm.ensure_project_open(project, __("Sprints")).then((open) => {
+		if (open) return frappe.new_doc("Sprint", { project });
+	});
 };
 
 /**

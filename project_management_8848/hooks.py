@@ -19,9 +19,14 @@ doctype_js = {
 	"Issue": "public/js/sprint_filter.js",
 }
 
-after_install = "project_management_8848.install.after_install"
+after_sync = "project_management_8848.install.after_sync"
 after_migrate = "project_management_8848.install.after_migrate"
-before_uninstall = "project_management_8848.install.before_uninstall"
+
+override_doctype_dashboards = {
+	"Project": "project_management_8848.pm_agile.customization.project.project_dashboard.get_data",
+	"Task": "project_management_8848.pm_agile.customization.task.task_dashboard.get_data",
+	"Issue": "project_management_8848.pm_agile.customization.issue.issue_dashboard.get_data",
+}
 
 doc_events = {
 	"Task": {
@@ -34,8 +39,6 @@ doc_events = {
 	},
 }
 
-# Custom fields are created in code (pm_agile/customization/custom_fields.py),
-# so nothing is exported as a fixture yet.
-custom_fixtures = []
+custom_fixtures = [{"dt": "Custom Field", "filters": {"module": "PM Agile"}}]
 
 commands = ["project_management_8848.commands.export_fixtures.export_fixtures"]

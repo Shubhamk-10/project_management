@@ -27,7 +27,8 @@ def before_validate(doc: Document, method: str | None = None) -> None:
 
 def validate(doc: Document, method: str | None = None) -> None:
 	"""
-	doc_events hook: block a sprint from another project or a newly linked Completed sprint.
+	doc_events hook: block a sprint from another project, a newly linked Completed sprint or
+	sprint of a project that is not Open, a Working status outside an Active sprint, or expected dates outside the sprint.
 
 	Parameters:
 		doc (Document, required): The Task being saved.

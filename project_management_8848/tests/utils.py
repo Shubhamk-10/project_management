@@ -22,6 +22,20 @@ def make_project(project_name: str | None = None) -> Document:
 	).insert()
 
 
+def close_project(project: str, status: str) -> None:
+	"""
+	Set a Project's status directly, skipping ERPNext's Project hooks so only the status changes.
+
+	Parameters:
+		project (str, required): Project name.
+		status (str, required): "Completed" or "Cancelled".
+
+	Returns:
+		None
+	"""
+	frappe.db.set_value("Project", project, "status", status)
+
+
 def make_sprint(
 	project: str,
 	start_date: str = "2026-11-01",

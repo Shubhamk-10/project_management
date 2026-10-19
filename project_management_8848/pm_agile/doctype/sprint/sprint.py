@@ -7,6 +7,7 @@ from frappe.model.document import Document
 
 from project_management_8848.pm_agile.doctype.sprint.sprint_utils import (
 	validate_date_range,
+	validate_project_open,
 	validate_single_active_sprint,
 )
 
@@ -16,10 +17,12 @@ class Sprint(Document):
 
 	def validate(self):
 		"""
-		Reject an inverted date range and a second Active sprint in the same project.
+		Reject a project that is not Open, an inverted date range and a second Active sprint
+		in the same project.
 
 		Returns:
 			None
 		"""
+		validate_project_open(self)
 		validate_date_range(self)
 		validate_single_active_sprint(self)

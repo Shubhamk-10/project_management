@@ -3,8 +3,8 @@
 # of this file, via any medium, is strictly prohibited without prior
 # written permission from 8848 Digital LLP.
 
-# Data for the Project Dashboard page. Plain functions; the client reaches them through
-# pm_agile/api/v1/project_dashboard.py.
+# Data for the Project Dashboard page (page/pm_projects). Plain functions; the client reaches
+# them through pm_agile/api/v1/project_dashboard.py.
 
 import frappe
 from frappe import _

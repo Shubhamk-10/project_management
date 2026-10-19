@@ -6,11 +6,11 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from project_management_8848.tests.utils import make_project, make_sprint
+from project_management_8848.tests.utils import close_project, make_project, make_sprint
 
 
 class TestSprint(FrappeTestCase):
-	"""Sprint controller rules: naming, date range and one Active sprint per project."""
+	"""Sprint controller rules: naming, Open project, date range and one Active sprint per project."""
 
 	def test_name_follows_project(self):
 		"""Sprint names use the {project}-SPR-{##} format."""
@@ -60,3 +60,33 @@ class TestSprint(FrappeTestCase):
 		second.save()
 
 		self.assertEqual(second.status, "Active")
+
+	def test_sprint_in_closed_project_is_rejected(self):
+		"""Sprints can only be created in an Open project."""
+		for status in ("Completed", "Cancelled"):
+			project = make_project()
+			close_project(project.name, status)
+
+			with self.assertRaises(frappe.ValidationError):
+				make_sprint(project.name)
+
+	def test_sprint_cannot_move_to_closed_project(self):
+		"""Changing a sprint's project to one that is not Open is rejected."""
+		sprint = make_sprint(make_project().name)
+		closed = make_project()
+		close_project(closed.name, "Completed")
+
+		sprint.project = closed.name
+		with self.assertRaises(frappe.ValidationError):
+			sprint.save()
+
+	def test_existing_sprint_stays_editable_after_project_closes(self):
+		"""A sprint can still be completed after its project is Completed."""
+		project = make_project()
+		sprint = make_sprint(project.name, status="Active")
+		close_project(project.name, "Completed")
+
+		sprint.status = "Completed"
+		sprint.save()
+
+		self.assertEqual(sprint.status, "Completed")

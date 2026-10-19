@@ -3,41 +3,26 @@
 # of this file, via any medium, is strictly prohibited without prior
 # written permission from 8848 Digital LLP.
 
-from project_management_8848.pm_agile.customization.custom_fields import (
-	delete_custom_fields,
-	make_custom_fields,
-)
 from project_management_8848.pm_agile.customization.indexes import add_indexes
 
 
-def after_install() -> None:
+def after_sync() -> None:
 	"""
-	Add the sprint custom fields and their indexes to Task and Issue when the app is installed.
+	Add the sprint field indexes when the app is installed. Runs as `after_sync`, not
+	`after_install`, because Frappe imports fixtures/ (which create the sprint custom fields)
+	after `after_install` but before `after_sync`.
 
 	Returns:
 		None
 	"""
-	make_custom_fields()
 	add_indexes()
 
 
 def after_migrate() -> None:
 	"""
-	Re-apply the sprint custom fields and indexes so changes reach existing sites.
+	Re-apply the sprint field indexes so changes reach existing sites.
 
 	Returns:
 		None
 	"""
-	make_custom_fields()
 	add_indexes()
-
-
-def before_uninstall() -> None:
-	"""
-	Remove the sprint custom fields from Task and Issue before the app is uninstalled.
-	Indexes stay with the columns, which Frappe never drops for custom fields.
-
-	Returns:
-		None
-	"""
-	delete_custom_fields()
